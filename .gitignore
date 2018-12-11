@@ -1,0 +1,55 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+!gradle/wrapper/gradle-wrapper.jar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# IDE and build files
+.gradle/
+.idea/
+build/
+/src/generated/
+/target/
+.vertx/
+.DS_Store
+classes/
+
+
+*.iml
+out/
+.idea/
+*/.vertx/
+build/
+*/build/
+classes/
+.gradle/
+build/
+.build.GIT_BRANCH
+*.log
+metastore_db/
+data-dependency-plugin/ckp-plugin-example/target/
+data-dependency-plugin/ckp-plugin/target/
+ 
+*.ipr
+*.iws
+
+# Virtualenv
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json

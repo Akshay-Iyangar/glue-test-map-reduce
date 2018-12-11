@@ -1,0 +1,26 @@
+
+plugins {
+    id 'java'
+}
+
+apply plugin: 'idea'
+
+group 'com.godaddy.dataplatform'
+
+repositories {
+    mavenCentral()
+    maven { //had to bring it in since hive-exec misses pentaho-aggdesigner-algorithm in mavenCentral.
+
+      url "http://conjars.org/repo"
+  }
+}
+
+
+dependencies {
+  testCompile group: 'junit', name: 'junit', version: '4.12'
+  compile group: 'org.apache.hive', name: 'hive-exec', version: '2.3.3', classifier:'core'
+  compile group: 'org.apache.hive.hcatalog', name: 'hive-hcatalog-core', version: '2.3.3'
+}
+
+
+
