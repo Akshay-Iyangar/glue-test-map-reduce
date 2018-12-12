@@ -8,6 +8,48 @@ HADOOP_CLASSPATH=/usr/lib/hive/lib/*:/usr/lib/hive-hcatalog/share/hcatalog/*:/et
 ```
 
 
+## Reproduction steps
+1. Create S3 buckets `s3://test-aiyangar/read/` and `s3://test-aiyangar/write/`
+2. Create glue database `c360_glue_database`
+3. Create tables 
+###### Read Table
+```
+CREATE EXTERNAL TABLE `c360_glue_database.read`(
+  `id` string COMMENT 'from deserializer', 
+  `name` string COMMENT 'from deserializer')
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.OpenCSVSerde' 
+WITH SERDEPROPERTIES ( 
+  'separatorChar'=',') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  's3://test-aiyangar/read/'
+TBLPROPERTIES (
+  'classification'='csv')
+ ```
+###### Write Table
+ ```
+ CREATE EXTERNAL TABLE `c360_glue_database.write`(
+  `original_name` string COMMENT 'from deserializer', 
+  `value` string COMMENT 'from deserializer')
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.serde2.OpenCSVSerde' 
+WITH SERDEPROPERTIES ( 
+  'separatorChar'=',') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.mapred.TextInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION
+  's3://test-aiyangar/write/'
+TBLPROPERTIES (
+  'classification'='csv')
+ ```
+4. Spin up EMR cluster copy the jar and run.
+
 ## Stacktrace for the above Application
 
 ```
@@ -43,4 +85,9 @@ Caused by: NoSuchObjectException(message:c360_glue_database.read table not found
     at org.apache.hive.hcatalog.mapreduce.InitializeInput.setInput(InitializeInput.java:88)
     at org.apache.hive.hcatalog.mapreduce.HCatInputFormat.setInput(HCatInputFormat.java:95)
     ... 11 more
-    ```
+   
+   
+   
+   
+   
+   
