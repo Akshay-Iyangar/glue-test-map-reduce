@@ -9,7 +9,7 @@ HADOOP_CLASSPATH=/usr/lib/hive/lib/*:/usr/lib/hive-hcatalog/share/hcatalog/*:/et
 
 
 ## Reproduction steps
-1. Create S3 buckets `s3://test-aiyangar/read/` and `s3://test-aiyangar/write/`
+1. Create S3 buckets `s3://test-aiyangar/read/` and `s3://test-aiyangar/write/` and drop the `read.csv` in read folder.
 2. Create glue database `c360_glue_database`
 3. Create tables 
 ###### Read Table
